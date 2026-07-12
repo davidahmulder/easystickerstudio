@@ -1,0 +1,1552 @@
+<!-- Sticker Designer Embed: paste this block into an HTML/custom-code section of your site. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bangers&family=Bebas+Neue&family=Caveat&family=Dancing+Script&family=Fredoka&family=Lobster&family=Montserrat:wght@400;600;700&family=Oswald&family=Pacifico&family=Playfair+Display&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<style>
+  #sticker-designer-embed {
+    --sde-bg: #f4f6f8;
+    --sde-panel: #ffffff;
+    --sde-panel-soft: #f9fafb;
+    --sde-line: #d9e0e8;
+    --sde-line-strong: #b9c4d0;
+    --sde-text: #17212f;
+    --sde-muted: #647184;
+    --sde-accent: #0f9f8f;
+    --sde-accent-dark: #087568;
+    --sde-coral: #ff6b4a;
+    --sde-yellow: #f7b731;
+    --sde-focus: rgba(15, 159, 143, 0.22);
+    --sde-shadow: 0 20px 55px rgba(23, 33, 47, 0.12);
+   width: 100%;
+max-width: 1800px;
+height: 850px;
+min-height: 850px;
+overflow: hidden;
+    border: 1px solid var(--sde-line);
+    border-radius: 8px;
+    color: var(--sde-text);
+    background: var(--sde-bg);
+    font-family: Poppins, Montserrat, Arial, sans-serif;
+  }
+
+  #sticker-designer-embed,
+  #sticker-designer-embed * {
+    box-sizing: border-box;
+  }
+
+  #sticker-designer-embed button,
+  #sticker-designer-embed input,
+  #sticker-designer-embed select {
+    font: inherit;
+  }
+
+  #sticker-designer-embed button {
+    border: 0;
+    cursor: pointer;
+  }
+
+  #sticker-designer-embed button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+
+  #sticker-designer-embed .sde-shell {
+    display: grid;
+    grid-template-rows: 58px minmax(0, 1fr) 38px;
+    height: 100%;
+    min-height: 0;
+  }
+
+  #sticker-designer-embed .sde-topbar {
+    display: grid;
+    grid-template-columns: 250px minmax(0, 1fr);
+    align-items: center;
+    gap: 14px;
+    padding: 0 18px;
+    background: var(--sde-panel);
+    border-bottom: 1px solid var(--sde-line);
+  }
+
+  #sticker-designer-embed .sde-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    font-weight: 700;
+  }
+
+  #sticker-designer-embed .sde-brand-mark {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    flex: 0 0 auto;
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--sde-accent), var(--sde-coral));
+    border-radius: 8px;
+  }
+
+  #sticker-designer-embed .sde-title {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 700;
+  }
+
+  #sticker-designer-embed .sde-top-actions,
+  #sticker-designer-embed .sde-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  #sticker-designer-embed .sde-top-actions {
+    justify-content: flex-end;
+    overflow: hidden;
+  }
+
+  #sticker-designer-embed .sde-toolbar {
+    padding-right: 8px;
+    border-right: 1px solid var(--sde-line);
+  }
+
+  #sticker-designer-embed .sde-toolbar:last-child {
+    border-right: 0;
+  }
+
+  #sticker-designer-embed .sde-icon-button,
+  #sticker-designer-embed .sde-tool-button,
+  #sticker-designer-embed .sde-primary-button,
+  #sticker-designer-embed .sde-secondary-button,
+  #sticker-designer-embed .sde-layer-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 36px;
+    border-radius: 8px;
+    transition: background 140ms ease, color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+  }
+
+  #sticker-designer-embed .sde-icon-button {
+    width: 36px;
+    color: var(--sde-text);
+    background: transparent;
+  }
+
+  #sticker-designer-embed .sde-icon-button:hover,
+  #sticker-designer-embed .sde-tool-button:hover,
+  #sticker-designer-embed .sde-secondary-button:hover,
+  #sticker-designer-embed .sde-layer-button:hover {
+    background: #eef3f4;
+  }
+
+  #sticker-designer-embed .sde-icon-button:focus-visible,
+  #sticker-designer-embed .sde-tool-button:focus-visible,
+  #sticker-designer-embed .sde-primary-button:focus-visible,
+  #sticker-designer-embed .sde-secondary-button:focus-visible,
+  #sticker-designer-embed .sde-layer-button:focus-visible,
+  #sticker-designer-embed .sde-swatch:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--sde-focus);
+  }
+
+  #sticker-designer-embed .sde-primary-button {
+    padding: 0 14px;
+    color: #ffffff;
+    background: var(--sde-accent);
+    font-weight: 700;
+  }
+
+  #sticker-designer-embed .sde-primary-button:hover {
+    background: var(--sde-accent-dark);
+    transform: translateY(-1px);
+  }
+
+  #sticker-designer-embed .sde-secondary-button {
+    padding: 0 12px;
+    color: var(--sde-text);
+    background: #edf2f5;
+    font-weight: 700;
+  }
+
+  #sticker-designer-embed .sde-workspace {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr) 290px;
+    min-height: 0;
+  }
+
+  #sticker-designer-embed .sde-side,
+  #sticker-designer-embed .sde-inspector {
+    min-height: 0;
+    overflow: auto;
+    background: var(--sde-panel);
+  }
+
+  #sticker-designer-embed .sde-side {
+    border-right: 1px solid var(--sde-line);
+  }
+
+  #sticker-designer-embed .sde-inspector {
+    border-left: 1px solid var(--sde-line);
+  }
+
+  #sticker-designer-embed .sde-section {
+    padding: 18px;
+    border-bottom: 1px solid var(--sde-line);
+  }
+
+  #sticker-designer-embed .sde-section:last-child {
+    border-bottom: 0;
+  }
+
+  #sticker-designer-embed .sde-section-title {
+    margin: 0 0 12px;
+    color: var(--sde-muted);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  #sticker-designer-embed .sde-tool-list,
+  #sticker-designer-embed .sde-control-stack,
+  #sticker-designer-embed .sde-layers {
+    display: grid;
+    gap: 10px;
+  }
+
+  #sticker-designer-embed .sde-tool-button {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 12px;
+    color: var(--sde-text);
+    background: var(--sde-panel-soft);
+    border: 1px solid var(--sde-line);
+    font-weight: 700;
+  }
+
+  #sticker-designer-embed .sde-preset-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  #sticker-designer-embed .sde-preset {
+    display: grid;
+    min-height: 72px;
+    padding: 10px;
+    border: 1px solid var(--sde-line);
+    border-radius: 8px;
+    background: var(--sde-panel-soft);
+    color: var(--sde-text);
+    text-align: left;
+    align-content: end;
+    position: relative;
+    overflow: hidden;
+    font-weight: 700;
+  }
+
+  #sticker-designer-embed .sde-preset:before {
+    content: "";
+    position: absolute;
+    inset: 9px 9px auto auto;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--sde-preset-a);
+    box-shadow: -18px 20px 0 var(--sde-preset-b);
+  }
+
+  #sticker-designer-embed .sde-canvas-zone {
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    min-width: 0;
+    min-height: 0;
+    background:
+      linear-gradient(90deg, rgba(217, 224, 232, 0.58) 1px, transparent 1px),
+      linear-gradient(rgba(217, 224, 232, 0.58) 1px, transparent 1px),
+      #edf1f4;
+    background-size: 34px 34px;
+  }
+
+  #sticker-designer-embed .sde-contextbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 50px;
+    gap: 12px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid var(--sde-line);
+    backdrop-filter: blur(14px);
+  }
+
+  #sticker-designer-embed .sde-selection {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    color: var(--sde-muted);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  #sticker-designer-embed .sde-selection strong {
+    color: var(--sde-text);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #sticker-designer-embed .sde-stage {
+    display: grid;
+    min-width: 0;
+    min-height: 0;
+    overflow: auto;
+    padding: 36px;
+    place-items: center;
+  }
+
+  #sticker-designer-embed .sde-artboard-wrap {
+    padding: 18px;
+    background: #ffffff;
+    border: 1px solid var(--sde-line-strong);
+    border-radius: 8px;
+    box-shadow: var(--sde-shadow);
+  }
+
+  #sticker-designer-embed .sde-artboard {
+    position: relative;
+    width: 980px;
+    height: 560px;
+    overflow: hidden;
+    background-color: #ffffff;
+    background-image:
+      linear-gradient(45deg, #e9edf2 25%, transparent 25%),
+      linear-gradient(-45deg, #e9edf2 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #e9edf2 75%),
+      linear-gradient(-45deg, transparent 75%, #e9edf2 75%);
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+    background-size: 20px 20px;
+  }
+
+  #sticker-designer-embed .canvas-container,
+  #sticker-designer-embed canvas {
+    display: block;
+  }
+
+  #sticker-designer-embed .sde-field {
+    display: grid;
+    gap: 8px;
+  }
+
+  #sticker-designer-embed .sde-field-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #sticker-designer-embed .sde-field label,
+  #sticker-designer-embed .sde-field-row label,
+  #sticker-designer-embed .sde-toggle span {
+    color: var(--sde-muted);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  #sticker-designer-embed .sde-field input[type="number"],
+  #sticker-designer-embed .sde-field select {
+    width: 100%;
+    min-height: 38px;
+    border: 1px solid var(--sde-line);
+    border-radius: 8px;
+    padding: 0 10px;
+    color: var(--sde-text);
+    background: var(--sde-panel-soft);
+    outline: none;
+  }
+
+  #sticker-designer-embed .sde-field input[type="number"]:focus,
+  #sticker-designer-embed .sde-field select:focus {
+    border-color: var(--sde-accent);
+    box-shadow: 0 0 0 4px var(--sde-focus);
+  }
+
+  #sticker-designer-embed .sde-range-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 54px;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #sticker-designer-embed input[type="range"] {
+    width: 100%;
+    accent-color: var(--sde-accent);
+  }
+
+  #sticker-designer-embed .sde-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30px;
+    border-radius: 8px;
+    background: var(--sde-panel-soft);
+    color: var(--sde-muted);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  #sticker-designer-embed .sde-color-row {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+  }
+
+  #sticker-designer-embed input[type="color"] {
+    width: 40px;
+    height: 38px;
+    padding: 2px;
+    border: 1px solid var(--sde-line);
+    border-radius: 8px;
+    background: #ffffff;
+  }
+
+  #sticker-designer-embed .sde-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  #sticker-designer-embed .sde-swatch {
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgba(23, 33, 47, 0.18);
+    border-radius: 50%;
+    background: var(--sde-swatch);
+  }
+
+  #sticker-designer-embed .sde-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  #sticker-designer-embed .sde-switch {
+    position: relative;
+    width: 46px;
+    height: 26px;
+    flex: 0 0 auto;
+  }
+
+  #sticker-designer-embed .sde-switch input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+
+  #sticker-designer-embed .sde-switch span {
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: #d4dbe4;
+    transition: background 140ms ease;
+  }
+
+  #sticker-designer-embed .sde-switch span:before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 2px 6px rgba(23, 33, 47, 0.2);
+    transition: transform 140ms ease;
+  }
+
+  #sticker-designer-embed .sde-switch input:checked + span {
+    background: var(--sde-accent);
+  }
+
+  #sticker-designer-embed .sde-switch input:checked + span:before {
+    transform: translateX(20px);
+  }
+
+  #sticker-designer-embed .sde-layer-button {
+    width: 100%;
+    justify-content: flex-start;
+    min-width: 0;
+    padding: 10px;
+    color: var(--sde-text);
+    background: var(--sde-panel-soft);
+    border: 1px solid var(--sde-line);
+    text-align: left;
+  }
+
+  #sticker-designer-embed .sde-layer-button.is-active {
+    border-color: var(--sde-accent);
+    box-shadow: inset 3px 0 0 var(--sde-accent);
+  }
+
+  #sticker-designer-embed .sde-layer-label {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  #sticker-designer-embed .sde-layer-meta {
+    display: block;
+    color: var(--sde-muted);
+    font-size: 11px;
+  }
+
+  #sticker-designer-embed .sde-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 18px;
+    color: var(--sde-muted);
+    background: var(--sde-panel);
+    border-top: 1px solid var(--sde-line);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  #sticker-designer-embed .sde-hidden {
+    display: none !important;
+  }
+
+  @media (max-width: 1100px) {
+    #sticker-designer-embed {
+      height: 820px;
+    }
+
+    #sticker-designer-embed .sde-workspace {
+      grid-template-columns: 84px minmax(0, 1fr);
+    }
+
+    #sticker-designer-embed .sde-side .sde-section {
+      padding: 12px;
+    }
+
+    #sticker-designer-embed .sde-side .sde-section-title,
+    #sticker-designer-embed .sde-side .sde-tool-button strong,
+    #sticker-designer-embed .sde-preset-grid,
+    #sticker-designer-embed .sde-toolbar.sde-hide-medium {
+      display: none;
+    }
+
+    #sticker-designer-embed .sde-tool-button {
+      justify-content: center;
+      width: 48px;
+      min-height: 48px;
+      padding: 0;
+    }
+
+    #sticker-designer-embed .sde-inspector {
+      grid-column: 1 / -1;
+      max-height: 300px;
+      border-top: 1px solid var(--sde-line);
+      border-left: 0;
+    }
+
+    #sticker-designer-embed .sde-topbar {
+      grid-template-columns: minmax(150px, 1fr) auto;
+    }
+
+    #sticker-designer-embed .sde-top-actions {
+      justify-content: flex-end;
+    }
+  }
+
+  @media (max-width: 760px) {
+    #sticker-designer-embed {
+      height: 940px;
+    }
+
+    #sticker-designer-embed .sde-shell {
+      grid-template-rows: auto minmax(0, 1fr) auto;
+    }
+
+    #sticker-designer-embed .sde-topbar {
+      grid-template-columns: 1fr;
+      gap: 10px;
+      padding: 12px;
+    }
+
+    #sticker-designer-embed .sde-top-actions {
+      justify-content: flex-start;
+      overflow-x: auto;
+    }
+
+    #sticker-designer-embed .sde-workspace {
+      grid-template-columns: 1fr;
+    }
+
+    #sticker-designer-embed .sde-side {
+      border-right: 0;
+      border-bottom: 1px solid var(--sde-line);
+    }
+
+    #sticker-designer-embed .sde-side .sde-section {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+    }
+
+    #sticker-designer-embed .sde-tool-list {
+      display: flex;
+      gap: 10px;
+    }
+
+    #sticker-designer-embed .sde-stage {
+      padding: 18px;
+      place-items: start;
+    }
+
+    #sticker-designer-embed .sde-contextbar,
+    #sticker-designer-embed .sde-status {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>
+
+<div id="sticker-designer-embed">
+  <div class="sde-shell">
+    <div class="sde-topbar">
+      <div class="sde-brand">
+        <div class="sde-brand-mark" aria-hidden="true"><i data-lucide="sparkles"></i></div>
+        <span class="sde-title">Sticker Studio</span>
+      </div>
+
+      <div class="sde-top-actions">
+        <div class="sde-toolbar">
+          <button class="sde-icon-button" data-action="undo" type="button" title="Undo" aria-label="Undo"><i data-lucide="undo-2"></i></button>
+          <button class="sde-icon-button" data-action="redo" type="button" title="Redo" aria-label="Redo"><i data-lucide="redo-2"></i></button>
+        <button class="sde-primary-button" data-action="cart" type="button">
+    🛒 Add to Cart
+</button>
+        </div>
+        <div class="sde-toolbar sde-hide-medium">
+          <button class="sde-icon-button" data-action="front" type="button" title="Bring to front" aria-label="Bring to front"><i data-lucide="bring-to-front"></i></button>
+          <button class="sde-icon-button" data-action="back" type="button" title="Send to back" aria-label="Send to back"><i data-lucide="send-to-back"></i></button>
+          <button class="sde-icon-button" data-action="duplicate" type="button" title="Duplicate" aria-label="Duplicate"><i data-lucide="copy"></i></button>
+          <button class="sde-icon-button" data-action="delete" type="button" title="Delete" aria-label="Delete"><i data-lucide="trash-2"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sde-workspace">
+      <aside class="sde-side" aria-label="Tools">
+        <section class="sde-section">
+          <h2 class="sde-section-title">Create</h2>
+          <div class="sde-tool-list">
+            <button class="sde-tool-button" data-action="text" type="button" title="Text" aria-label="Text"><i data-lucide="type"></i><strong>Text</strong></button>
+            <button class="sde-tool-button" data-action="upload" type="button" title="Image" aria-label="Image"><i data-lucide="image-plus"></i><strong>Image</strong></button>
+            <button class="sde-tool-button" data-action="circle" type="button" title="Circle" aria-label="Circle"><i data-lucide="circle"></i><strong>Circle</strong></button>
+            <button class="sde-tool-button" data-action="rounded" type="button" title="Shape" aria-label="Shape"><i data-lucide="square-round-corner"></i><strong>Shape</strong></button>
+            <button class="sde-tool-button" data-action="star" type="button" title="Star" aria-label="Star"><i data-lucide="star"></i><strong>Star</strong></button>
+          </div>
+          <input class="sde-hidden" data-sde="upload" type="file" accept="image/*">
+        </section>
+
+        <section class="sde-section">
+          <h2 class="sde-section-title">Styles</h2>
+          <div class="sde-preset-grid">
+            <button class="sde-preset" data-preset="fresh" style="--sde-preset-a:#0f9f8f;--sde-preset-b:#ff6b4a" type="button">Fresh</button>
+            <button class="sde-preset" data-preset="bold" style="--sde-preset-a:#17212f;--sde-preset-b:#f7b731" type="button">Bold</button>
+            <button class="sde-preset" data-preset="pop" style="--sde-preset-a:#e8497e;--sde-preset-b:#4ecdc4" type="button">Pop</button>
+            <button class="sde-preset" data-preset="mono" style="--sde-preset-a:#ffffff;--sde-preset-b:#111827" type="button">Mono</button>
+          </div>
+        </section>
+      </aside>
+
+      <section class="sde-canvas-zone" aria-label="Canvas">
+        <div class="sde-contextbar">
+          <div class="sde-selection">
+            <i data-lucide="mouse-pointer-2"></i>
+            <strong data-sde="activeName">Nothing selected</strong>
+          </div>
+          <div class="sde-toolbar">
+            <button class="sde-secondary-button" data-action="sticker" type="button"><i data-lucide="badge"></i>Make sticker</button>
+            <button class="sde-icon-button" data-action="center" type="button" title="Center" aria-label="Center"><i data-lucide="align-center"></i></button>
+            <button class="sde-icon-button" data-action="clear" type="button" title="Clear canvas" aria-label="Clear canvas"><i data-lucide="eraser"></i></button>
+          </div>
+        </div>
+
+        <div class="sde-stage">
+          <div class="sde-artboard-wrap">
+            <div class="sde-artboard">
+              <canvas data-sde="canvas" width="980" height="560"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="sde-inspector" aria-label="Properties">
+        
+        <section class="sde-section">
+  <h2 class="sde-section-title">Sticker Options</h2>
+
+  <div class="sde-control-stack">
+
+    <div class="sde-field">
+      <label>Sticker Type</label>
+      <select id="stickerType">
+       <option>Die-Cut Sticker (+€0.00)</option>
+<option>Kiss-Cut Sticker (+€0.00)</option>
+<option>Round Sticker (+€0.00)</option>
+<option>Square Sticker (+€0.00)</option>
+<option>Rectangle Sticker (+€0.00)</option>
+<option>Vinyl Sticker (+€0.00)</option>
+<option>Transparent Sticker (+€0.40)</option>
+<option>Holographic Sticker (+€0.90)</option>
+    </div>
+
+<div class="sde-field">
+  <label>Sticker Size</label>
+  <select id="stickerSize">
+   <option value="small">Small (7.5 × 10 cm) - from €2.35</option>
+<option value="medium">Medium (12.5 × 12.5 cm) - from €4.50</option>
+<option value="large">Large (21.5 × 21.5 cm) - from €7.00</option>
+<option value="xl">XL (35.5 × 35.5 cm) - from €9.50</option>
+  </select>
+</div>
+    
+  <div class="sde-field">
+      <label>Quantity</label>
+      <input type="number" id="stickerQuantity" value="1" min="1">
+    </div>
+
+    <div class="sde-field">
+      <label>Finish</label>
+      <select id="stickerFinish">
+        <option>Glossy</option>
+        <option>Matte</option>
+      </select>
+    </div>
+
+    <div class="sde-field">
+      <label>Estimated Price</label>
+     <div class="sde-number" data-sde="price">€0.00</div>
+    </div>
+    <div class="sde-field">
+  <button class="sde-primary-button" id="addToCartButton">
+    Add to Cart
+  </button>
+</div>
+
+  </div>
+</section>
+        
+        <section class="sde-section">
+          <h2 class="sde-section-title">Properties</h2>
+          <div class="sde-control-stack">
+            <div class="sde-field" data-text-control>
+              <label>Font</label>
+              <select data-sde="font">
+                <option value="Montserrat">Montserrat</option>
+                <option value="Poppins">Poppins</option>
+                <option value="Anton">Anton</option>
+                <option value="Bebas Neue">Bebas Neue</option>
+                <option value="Oswald">Oswald</option>
+                <option value="Pacifico">Pacifico</option>
+                <option value="Lobster">Lobster</option>
+                <option value="Dancing Script">Dancing Script</option>
+                <option value="Caveat">Caveat</option>
+                <option value="Playfair Display">Playfair Display</option>
+                <option value="Bangers">Bangers</option>
+                <option value="Fredoka">Fredoka</option>
+                <option value="Impact">Impact</option>
+                <option value="Arial">Arial</option>
+              </select>
+            </div>
+
+            <div class="sde-field" data-text-control>
+              <div class="sde-field-row">
+                <label>Size</label>
+                <span class="sde-number" data-sde="sizeValue">64</span>
+              </div>
+              <div class="sde-range-row">
+                <input data-sde="size" type="range" min="8" max="220" value="64">
+                <input data-sde="sizeNumber" type="number" min="8" max="220" value="64">
+              </div>
+            </div>
+
+            <div class="sde-field">
+              <label>Fill color</label>
+              <div class="sde-color-row">
+                <input data-sde="fill" type="color" value="#111827">
+                <div class="sde-swatches" data-swatch-group="fill">
+                  <button class="sde-swatch" style="--sde-swatch:#111827" data-color="#111827" type="button" aria-label="Black"></button>
+                  <button class="sde-swatch" style="--sde-swatch:#ffffff" data-color="#ffffff" type="button" aria-label="White"></button>
+                  <button class="sde-swatch" style="--sde-swatch:#0f9f8f" data-color="#0f9f8f" type="button" aria-label="Green"></button>
+                  <button class="sde-swatch" style="--sde-swatch:#ff6b4a" data-color="#ff6b4a" type="button" aria-label="Coral"></button>
+                  <button class="sde-swatch" style="--sde-swatch:#f7b731" data-color="#f7b731" type="button" aria-label="Yellow"></button>
+                  <button class="sde-swatch" style="--sde-swatch:#e8497e" data-color="#e8497e" type="button" aria-label="Pink"></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="sde-field">
+              <div class="sde-field-row">
+                <label>Opacity</label>
+                <span class="sde-number" data-sde="opacityValue">100%</span>
+              </div>
+              <input data-sde="opacity" type="range" min="10" max="100" value="100">
+            </div>
+          </div>
+        </section>
+
+        <section class="sde-section">
+          <h2 class="sde-section-title">Sticker</h2>
+          <div class="sde-control-stack">
+            <div class="sde-field">
+              <div class="sde-field-row">
+                <label>Outline</label>
+                <span class="sde-number" data-sde="outlineValue">18 px</span>
+              </div>
+              <input data-sde="outlineWidth" type="range" min="0" max="48" value="18">
+            </div>
+
+            <div class="sde-field">
+              <label>Outline color</label>
+              <div class="sde-color-row">
+                <input data-sde="outlineColor" type="color" value="#ffffff">
+                <div class="sde-swatches" data-swatch-group="outline">
+                  <button class="sde-swatch" style="--sde-swatch:#ffffff" data-color="#ffffff" type="button" aria-label="White"></button>
+                  <button class="sde-swatch" style="--sde-swatch:#111827" data-color="#111827" type="button" aria-label="Black"></button>
+                  <button class="sde-swatch" style="--sde-swatch:#0f9f8f" data-color="#0f9f8f" type="button" aria-label="Green"></button>
+                  <button class="sde-swatch" style="--sde-swatch:#ff6b4a" data-color="#ff6b4a" type="button" aria-label="Coral"></button>
+                </div>
+              </div>
+            </div>
+
+            <div class="sde-toggle">
+              <span>Shadow</span>
+              <label class="sde-switch" aria-label="Shadow">
+                <input data-sde="shadow" type="checkbox" checked>
+                <span></span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <section class="sde-section">
+          <h2 class="sde-section-title">Layers</h2>
+          <div class="sde-layers" data-sde="layers"></div>
+        </section>
+      </aside>
+    </div>
+
+    <div class="sde-status">
+      <span><strong data-sde="objectCount">0</strong> objects</span>
+      <span>Canvas 980 x 560 px</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var root = document.getElementById("sticker-designer-embed");
+    if (!root || root.dataset.ready === "true") return;
+    root.dataset.ready = "true";
+
+    function startWhenReady() {
+      if (!window.fabric) {
+        window.setTimeout(startWhenReady, 80);
+        return;
+      }
+      initStickerDesigner();
+    }
+
+    function initStickerDesigner() {
+      var ui = function (name) {
+        return root.querySelector('[data-sde="' + name + '"]');
+      };
+      var all = function (selector) {
+        return Array.prototype.slice.call(root.querySelectorAll(selector));
+      };
+
+      var canvas = new fabric.Canvas(ui("canvas"), {
+        preserveObjectStacking: true,
+        backgroundColor: "rgba(255,255,255,0)"
+      });
+
+      fabric.Object.prototype.cornerColor = "#0f9f8f";
+      fabric.Object.prototype.cornerStrokeColor = "#ffffff";
+      fabric.Object.prototype.borderColor = "#0f9f8f";
+      fabric.Object.prototype.cornerSize = 12;
+      fabric.Object.prototype.transparentCorners = false;
+      fabric.Object.prototype.borderScaleFactor = 1.4;
+
+      var activeObject = null;
+      var history = [];
+      var historyIndex = -1;
+      var ignoreHistory = false;
+      var objectCounter = 1;
+      var historyTimer = null;
+      var editorHasFocus = false;
+      var presets = {
+        fresh: { fill: "#0f9f8f", stroke: "#ffffff", shadow: true },
+        bold: { fill: "#17212f", stroke: "#f7b731", shadow: true },
+        pop: { fill: "#e8497e", stroke: "#ffffff", shadow: true },
+        mono: { fill: "#ffffff", stroke: "#111827", shadow: false }
+      };
+
+      root.stickerDesignerCanvas = canvas;
+
+      function refreshIcons() {
+        if (window.lucide) {
+          window.lucide.createIcons({
+            attrs: { width: 18, height: 18, strokeWidth: 2.2 }
+          });
+        }
+      }
+
+      function isText(object) {
+        return object && (object.type === "textbox" || object.type === "i-text" || object.type === "text");
+      }
+
+      function objectKind(object) {
+        if (!object) return "Object";
+        if (isText(object)) return "Text";
+        if (object.type === "image") return "Image";
+        if (object.type === "circle") return "Circle";
+        if (object.type === "polygon") return "Star";
+        return "Shape";
+      }
+
+      function iconFor(object) {
+        if (isText(object)) return "type";
+        if (object.type === "image") return "image";
+        if (object.type === "circle") return "circle";
+        if (object.type === "polygon") return "star";
+        return "square";
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+
+      function identify(object, type) {
+        object.set({
+          id: object.id || "sde-object-" + Date.now() + "-" + objectCounter,
+          name: object.name || type + " " + objectCounter
+        });
+        objectCounter += 1;
+        return object;
+      }
+
+      function saveHistoryNow() {
+        if (ignoreHistory) return;
+        history = history.slice(0, historyIndex + 1);
+        history.push(JSON.stringify(canvas.toJSON(["id", "name"])));
+        historyIndex = history.length - 1;
+        updateHistoryButtons();
+      }
+
+      function scheduleHistory() {
+        if (ignoreHistory) return;
+        window.clearTimeout(historyTimer);
+        historyTimer = window.setTimeout(saveHistoryNow, 120);
+      }
+
+      function loadHistory(index) {
+        if (index < 0 || index >= history.length) return;
+        ignoreHistory = true;
+        canvas.loadFromJSON(history[index], function () {
+          canvas.renderAll();
+          activeObject = canvas.getActiveObject();
+          ignoreHistory = false;
+          updateUI();
+          updateHistoryButtons();
+        });
+      }
+
+      function updateHistoryButtons() {
+        root.querySelector('[data-action="undo"]').disabled = historyIndex <= 0;
+        root.querySelector('[data-action="redo"]').disabled = historyIndex >= history.length - 1;
+      }
+
+      function addText(text, options) {
+        options = options || {};
+        var textbox = new fabric.Textbox(text || "New text", {
+          left: options.left || 290,
+          top: options.top || 220,
+          width: options.width || 400,
+          fontSize: options.fontSize || 64,
+          fontFamily: options.fontFamily || "Montserrat",
+          fontWeight: options.fontWeight || 700,
+          fill: options.fill || "#111827",
+          textAlign: options.textAlign || "center",
+          stroke: options.stroke || "",
+          strokeWidth: options.strokeWidth || 0,
+          paintFirst: "stroke",
+          shadow: options.shadow || null,
+          padding: 8,
+          lineHeight: 0.95
+        });
+        identify(textbox, "Text");
+        canvas.add(textbox);
+        canvas.setActiveObject(textbox);
+        activeObject = textbox;
+        canvas.requestRenderAll();
+        updateUI();
+      }
+
+      function starPoints(outerRadius, innerRadius, points) {
+        var result = [];
+        var step = Math.PI / points;
+        for (var i = 0; i < points * 2; i += 1) {
+          var radius = i % 2 === 0 ? outerRadius : innerRadius;
+          var angle = i * step - Math.PI / 2;
+          result.push({
+            x: outerRadius + Math.cos(angle) * radius,
+            y: outerRadius + Math.sin(angle) * radius
+          });
+        }
+        return result;
+      }
+
+      function addShape(type) {
+        var shape;
+        if (type === "circle") {
+          shape = new fabric.Circle({
+            left: 365,
+            top: 150,
+            radius: 110,
+            fill: "#ff6b4a",
+            stroke: "#ffffff",
+            strokeWidth: 10,
+            shadow: new fabric.Shadow({ color: "rgba(23,33,47,0.18)", blur: 18, offsetX: 0, offsetY: 8 })
+          });
+          identify(shape, "Circle");
+        }
+        if (type === "rounded") {
+          shape = new fabric.Rect({
+            left: 310,
+            top: 190,
+            width: 360,
+            height: 150,
+            rx: 26,
+            ry: 26,
+            fill: "#0f9f8f",
+            stroke: "#ffffff",
+            strokeWidth: 10,
+            shadow: new fabric.Shadow({ color: "rgba(23,33,47,0.18)", blur: 18, offsetX: 0, offsetY: 8 })
+          });
+          identify(shape, "Shape");
+        }
+        if (type === "star") {
+          shape = new fabric.Polygon(starPoints(110, 52, 5), {
+            left: 390,
+            top: 160,
+            fill: "#f7b731",
+            stroke: "#ffffff",
+            strokeWidth: 10,
+            shadow: new fabric.Shadow({ color: "rgba(23,33,47,0.18)", blur: 18, offsetX: 0, offsetY: 8 })
+          });
+          identify(shape, "Star");
+        }
+        if (!shape) return;
+        canvas.add(shape);
+        if (type === "circle" || type === "rounded") canvas.sendToBack(shape);
+        canvas.setActiveObject(shape);
+        activeObject = shape;
+        canvas.requestRenderAll();
+        updateUI();
+      }
+
+      function uploadImage(event) {
+        var file = event.target.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function (fileEvent) {
+          fabric.Image.fromURL(fileEvent.target.result, function (img) {
+            img.set({ left: 250, top: 120, shadow: null });
+            img.scaleToWidth(Math.min(420, img.width || 420));
+            identify(img, "Image");
+            canvas.add(img);
+            canvas.setActiveObject(img);
+            activeObject = img;
+            canvas.requestRenderAll();
+            updateUI();
+          }, { crossOrigin: "anonymous" });
+        };
+        reader.readAsDataURL(file);
+        event.target.value = "";
+      }
+
+      function updateOutlineValue() {
+        ui("outlineValue").textContent = ui("outlineWidth").value + " px";
+      }
+
+      function setFill(color) {
+        if (!activeObject) return;
+        ui("fill").value = color;
+        if (activeObject.type !== "image") activeObject.set({ fill: color });
+        canvas.requestRenderAll();
+        scheduleHistory();
+        updateUI();
+      }
+
+      function setOutline(color) {
+        ui("outlineColor").value = color;
+        applyOutline();
+      }
+
+      function applyOutline() {
+        updateOutlineValue();
+        if (!activeObject || activeObject.type === "image") return;
+        activeObject.set({
+          stroke: ui("outlineColor").value,
+          strokeWidth: Number(ui("outlineWidth").value),
+          paintFirst: "stroke"
+        });
+        canvas.requestRenderAll();
+        scheduleHistory();
+        updateUI();
+      }
+
+      function applyShadow() {
+        if (!activeObject) return;
+        activeObject.set({
+          shadow: ui("shadow").checked
+            ? new fabric.Shadow({ color: "rgba(23,33,47,0.24)", blur: 18, offsetX: 0, offsetY: 10 })
+            : null
+        });
+        canvas.requestRenderAll();
+        scheduleHistory();
+        updateUI();
+      }
+
+      function makeSticker() {
+        if (!activeObject) return;
+        if (activeObject.type === "image") {
+          activeObject.set({
+            shadow: new fabric.Shadow({
+              color: ui("outlineColor").value,
+              blur: Math.max(10, Number(ui("outlineWidth").value)),
+              offsetX: 0,
+              offsetY: 0
+            })
+          });
+        } else {
+          applyOutline();
+          applyShadow();
+        }
+        activeObject.setCoords();
+        canvas.requestRenderAll();
+        scheduleHistory();
+        updateUI();
+      }
+
+      function changeFont() {
+        if (!isText(activeObject)) return;
+        var font = ui("font").value;
+        var apply = function () {
+          activeObject.set({ fontFamily: font });
+          activeObject.setCoords();
+          canvas.requestRenderAll();
+          scheduleHistory();
+          updateUI();
+        };
+        if (document.fonts && document.fonts.load) {
+          document.fonts.load('40px "' + font + '"').then(apply);
+        } else {
+          apply();
+        }
+      }
+
+      function changeSize(value) {
+        if (!isText(activeObject)) return;
+        var size = Math.max(8, Math.min(220, Number(value) || 8));
+        ui("size").value = size;
+        ui("sizeNumber").value = size;
+        ui("sizeValue").textContent = size;
+        activeObject.set({ fontSize: size });
+        activeObject.setCoords();
+        canvas.requestRenderAll();
+        scheduleHistory();
+      }
+
+      function changeOpacity() {
+        if (!activeObject) return;
+        var opacity = Number(ui("opacity").value) / 100;
+        ui("opacityValue").textContent = Math.round(opacity * 100) + "%";
+        activeObject.set({ opacity: opacity });
+        canvas.requestRenderAll();
+        scheduleHistory();
+      }
+
+      function applyPreset(name) {
+        if (!activeObject || !presets[name]) return;
+        var preset = presets[name];
+        ui("fill").value = preset.fill;
+        ui("outlineColor").value = preset.stroke;
+        ui("shadow").checked = preset.shadow;
+        if (activeObject.type !== "image") {
+          activeObject.set({
+            fill: preset.fill,
+            stroke: preset.stroke,
+            strokeWidth: Number(ui("outlineWidth").value),
+            paintFirst: "stroke"
+          });
+        }
+        applyShadow();
+        canvas.requestRenderAll();
+        scheduleHistory();
+        updateUI();
+      }
+
+      function duplicateObject() {
+        if (!activeObject) return;
+        activeObject.clone(function (clone) {
+          clone.set({
+            left: (activeObject.left || 0) + 28,
+            top: (activeObject.top || 0) + 28,
+            id: null,
+            name: null
+          });
+          identify(clone, objectKind(clone));
+          canvas.add(clone);
+          canvas.setActiveObject(clone);
+          activeObject = clone;
+          canvas.requestRenderAll();
+          updateUI();
+        }, ["id", "name"]);
+      }
+
+      function deleteObject() {
+        var selected = canvas.getActiveObject();
+        if (!selected) return;
+        canvas.remove(selected);
+        canvas.discardActiveObject();
+        activeObject = null;
+        canvas.requestRenderAll();
+        updateUI();
+      }
+
+      function clearCanvas() {
+        canvas.getObjects().forEach(function (object) {
+          canvas.remove(object);
+        });
+        activeObject = null;
+        canvas.requestRenderAll();
+        updateUI();
+      }
+
+      function saveToCart() {
+        canvas.discardActiveObject();
+        canvas.renderAll();
+
+        var cartKey = "stickerDesignerCart";
+        var cart = [];
+        var cartItem = {
+          id: "sticker-" + Date.now(),
+          createdAt: new Date().toISOString(),
+          preview: canvas.toDataURL({ format: "png", multiplier: 2, enableRetinaScaling: true }),
+          design: canvas.toJSON(["id", "name"]),
+          width: canvas.getWidth(),
+          height: canvas.getHeight()
+        };
+
+        try {
+          cart = JSON.parse(window.localStorage.getItem(cartKey) || "[]");
+          if (!Array.isArray(cart)) cart = [];
+        } catch (error) {
+          cart = [];
+        }
+
+        cart.push(cartItem);
+        try {
+          window.localStorage.setItem(cartKey, JSON.stringify(cart));
+          cartItem.savedToStorage = true;
+        } catch (error) {
+          cartItem.savedToStorage = false;
+        }
+
+        root.dispatchEvent(new CustomEvent("sticker-designer:add-to-cart", {
+          bubbles: true,
+          detail: cartItem
+        }));
+
+        var cartButton = root.querySelector('[data-action="cart"]');
+        var originalText = cartButton.innerHTML;
+        cartButton.innerHTML = '<i data-lucide="check"></i>Added';
+        refreshIcons();
+        window.setTimeout(function () {
+          cartButton.innerHTML = originalText;
+          refreshIcons();
+        }, 1600);
+
+        updateUI();
+      }
+
+      function renderLayers() {
+        var container = ui("layers");
+        var objects = canvas.getObjects().slice().reverse();
+        container.innerHTML = "";
+        if (!objects.length) {
+          var empty = document.createElement("span");
+          empty.className = "sde-layer-meta";
+          empty.textContent = "No layers";
+          container.appendChild(empty);
+          return;
+        }
+        objects.forEach(function (object) {
+          var button = document.createElement("button");
+          button.type = "button";
+          button.className = "sde-layer-button" + (object === activeObject ? " is-active" : "");
+          button.innerHTML =
+            '<i data-lucide="' + iconFor(object) + '"></i><span><span class="sde-layer-label">' +
+            escapeHtml(object.name || objectKind(object)) +
+            '</span><span class="sde-layer-meta">' +
+            objectKind(object) +
+            "</span></span>";
+          button.addEventListener("click", function () {
+            canvas.setActiveObject(object);
+            activeObject = object;
+            canvas.requestRenderAll();
+            updateUI();
+          });
+          container.appendChild(button);
+        });
+        refreshIcons();
+      }
+
+      function updateInspector() {
+        var hasSelection = Boolean(activeObject);
+        var textSelected = isText(activeObject);
+        all("[data-text-control]").forEach(function (control) {
+          control.classList.toggle("sde-hidden", !textSelected);
+        });
+
+        if (!hasSelection) {
+          ui("opacity").value = 100;
+          ui("opacityValue").textContent = "100%";
+          return;
+        }
+
+        if (textSelected) {
+          ui("font").value = activeObject.fontFamily || "Montserrat";
+          ui("size").value = activeObject.fontSize || 64;
+          ui("sizeNumber").value = activeObject.fontSize || 64;
+          ui("sizeValue").textContent = activeObject.fontSize || 64;
+        }
+
+        if (activeObject.fill && typeof activeObject.fill === "string" && activeObject.fill.indexOf("#") === 0) {
+          ui("fill").value = activeObject.fill;
+        }
+        if (activeObject.stroke && typeof activeObject.stroke === "string" && activeObject.stroke.indexOf("#") === 0) {
+          ui("outlineColor").value = activeObject.stroke;
+        }
+
+        ui("outlineWidth").value = Math.round(activeObject.strokeWidth || Number(ui("outlineWidth").value) || 0);
+        updateOutlineValue();
+        ui("opacity").value = Math.round((activeObject.opacity == null ? 1 : activeObject.opacity) * 100);
+        ui("opacityValue").textContent = ui("opacity").value + "%";
+        ui("shadow").checked = Boolean(activeObject.shadow);
+      }
+
+      function updateUI() {
+        activeObject = canvas.getActiveObject();
+        updateHistoryButtons();
+        updateInspector();
+        renderLayers();
+        ui("objectCount").textContent = String(canvas.getObjects().length);
+        ui("activeName").textContent = activeObject ? activeObject.name || objectKind(activeObject) : "Nothing selected";
+      }
+
+      root.addEventListener("click", function (event) {
+        var actionButton = event.target.closest("[data-action]");
+        if (actionButton && root.contains(actionButton)) {
+          var action = actionButton.getAttribute("data-action");
+          if (action === "text") addText();
+          if (action === "upload") ui("upload").click();
+          if (action === "circle") addShape("circle");
+          if (action === "rounded") addShape("rounded");
+          if (action === "star") addShape("star");
+          if (action === "undo" && historyIndex > 0) loadHistory(--historyIndex);
+          if (action === "redo" && historyIndex < history.length - 1) loadHistory(++historyIndex);
+          if (action === "front" && activeObject) { canvas.bringForward(activeObject); canvas.requestRenderAll(); scheduleHistory(); updateUI(); }
+          if (action === "back" && activeObject) { canvas.sendBackwards(activeObject); canvas.requestRenderAll(); scheduleHistory(); updateUI(); }
+          if (action === "duplicate") duplicateObject();
+          if (action === "delete") deleteObject();
+          if (action === "sticker") makeSticker();
+          if (action === "center" && activeObject) { canvas.centerObject(activeObject); activeObject.setCoords(); canvas.requestRenderAll(); scheduleHistory(); updateUI(); }
+          if (action === "clear") clearCanvas();
+          if (action === "cart") saveToCart();
+        }
+
+        var presetButton = event.target.closest("[data-preset]");
+        if (presetButton && root.contains(presetButton)) {
+          applyPreset(presetButton.getAttribute("data-preset"));
+        }
+
+        var swatch = event.target.closest(".sde-swatch");
+        if (swatch && root.contains(swatch)) {
+          var group = swatch.closest("[data-swatch-group]").getAttribute("data-swatch-group");
+          if (group === "fill") setFill(swatch.getAttribute("data-color"));
+          if (group === "outline") setOutline(swatch.getAttribute("data-color"));
+        }
+      });
+
+      root.addEventListener("pointerdown", function () {
+        editorHasFocus = true;
+      });
+
+      document.addEventListener("pointerdown", function (event) {
+        if (!root.contains(event.target)) editorHasFocus = false;
+      });
+
+      ui("upload").addEventListener("change", uploadImage);
+      ui("font").addEventListener("change", changeFont);
+      ui("size").addEventListener("input", function () { changeSize(ui("size").value); });
+      ui("sizeNumber").addEventListener("input", function () { changeSize(ui("sizeNumber").value); });
+      ui("fill").addEventListener("input", function () { setFill(ui("fill").value); });
+      ui("opacity").addEventListener("input", changeOpacity);
+      ui("outlineWidth").addEventListener("input", applyOutline);
+      ui("outlineColor").addEventListener("input", applyOutline);
+      ui("shadow").addEventListener("change", applyShadow);
+
+      canvas.on("object:added", scheduleHistory);
+      canvas.on("object:modified", scheduleHistory);
+      canvas.on("object:removed", scheduleHistory);
+      canvas.on("selection:created", updateUI);
+      canvas.on("selection:updated", updateUI);
+      canvas.on("selection:cleared", updateUI);
+      canvas.on("mouse:dblclick", function (event) {
+        if (isText(event.target)) {
+          canvas.setActiveObject(event.target);
+          event.target.enterEditing();
+          event.target.selectAll();
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        var selected = canvas.getActiveObject();
+        if (!selected || (!editorHasFocus && !root.contains(document.activeElement))) return;
+        if (isText(selected) && selected.isEditing) return;
+        if (event.key === "Delete" || event.key === "Backspace") {
+          event.preventDefault();
+          deleteObject();
+        }
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "d") {
+          event.preventDefault();
+          duplicateObject();
+        }
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "z") {
+          event.preventDefault();
+          if (event.shiftKey && historyIndex < history.length - 1) {
+            historyIndex += 1;
+            loadHistory(historyIndex);
+          } else if (!event.shiftKey && historyIndex > 0) {
+            historyIndex -= 1;
+            loadHistory(historyIndex);
+          }
+        }
+      });
+
+      ignoreHistory = true;
+      addText("STICKER", {
+        left: 310,
+        top: 210,
+        width: 360,
+        fontSize: 72,
+        fontFamily: "Bangers",
+        fill: "#111827",
+        textAlign: "center",
+        stroke: "#ffffff",
+        strokeWidth: 10,
+        shadow: new fabric.Shadow({ color: "rgba(23,33,47,0.22)", blur: 16, offsetX: 0, offsetY: 10 })
+      });
+      ignoreHistory = false;
+      saveHistoryNow();
+      updateUI();
+      refreshIcons();
+    }
+    
+    
+// ===== PRICE CALCULATION =====
+
+const sizePrices = {
+  small: 2.35,
+  medium: 4.50,
+  large: 7.00,
+  xl: 9.50
+};
+
+const typeExtra = {
+  "Die-Cut Sticker": 0,
+  "Kiss-Cut Sticker": 0,
+  "Round Sticker": 0,
+  "Square Sticker": 0,
+  "Rectangle Sticker": 0,
+  "Vinyl Sticker": 0,
+  "Transparent Sticker": 0.40,
+  "Holographic Sticker": 0.90
+};
+
+const finishExtra = {
+  "Glossy": 0,
+  "Matte": 0
+};
+
+function updatePrice() {
+  const size = document.getElementById("stickerSize").value;
+  const type = document.getElementById("stickerType").value;
+  const finish = document.getElementById("stickerFinish").value;
+  const quantity = Number(document.getElementById("stickerQuantity").value) || 1;
+
+  let price =
+    (sizePrices[size] || 0) +
+    (typeExtra[type] || 0) +
+    (finishExtra[finish] || 0);
+
+  price *= quantity;
+
+  document.querySelector('[data-sde="price"]').textContent =
+    "€" + price.toFixed(2);
+}
+
+document.getElementById("stickerSize").addEventListener("change", updatePrice);
+document.getElementById("stickerType").addEventListener("change", updatePrice);
+document.getElementById("stickerFinish").addEventListener("change", updatePrice);
+document.getElementById("stickerQuantity").addEventListener("input", updatePrice);
+
+updatePrice();
+
+// ===== END PRICE CALCULATION =====
+   
+
+
+
+
+    startWhenReady();
+  })();
+</script>
