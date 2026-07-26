@@ -719,7 +719,8 @@ overflow: hidden;
 <option>Vinyl Sticker (+€0.00)</option>
 <option>Transparent Sticker (+€0.40)</option>
 <option>Holographic Sticker (+€0.90)</option>
-    </div>
+</select>
+</div>
 
 <div class="sde-field">
   <label>Sticker Size</label>
@@ -1523,9 +1524,17 @@ function updatePrice() {
   const finish = document.getElementById("stickerFinish").value;
   const quantity = Number(document.getElementById("stickerQuantity").value) || 1;
 
+  let typePrice = 0;
+
+  if (type.includes("Transparent")) {
+    typePrice = 0.40;
+  } else if (type.includes("Holographic")) {
+    typePrice = 0.90;
+  }
+
   let price =
     (sizePrices[size] || 0) +
-    (typeExtra[type] || 0) +
+    typePrice +
     (finishExtra[finish] || 0);
 
   price *= quantity;
