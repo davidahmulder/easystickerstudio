@@ -1437,7 +1437,33 @@ overflow: hidden;
 
       canvas.on("object:added", scheduleHistory);
       canvas.on("object:modified", scheduleHistory);
-      
+      // Snap object to canvas center
+canvas.on("object:moving", function (event) {
+  const obj = event.target;
+
+  const centerX = canvas.getWidth() / 2;
+  const centerY = canvas.getHeight() / 2;
+
+  const objCenter = obj.getCenterPoint();
+
+  const snapDistance = 10;
+
+  if (Math.abs(objCenter.x - centerX) < snapDistance) {
+    obj.setPositionByOrigin(
+      new fabric.Point(centerX, objCenter.y),
+      "center",
+      "center"
+    );
+  }
+
+  if (Math.abs(objCenter.y - centerY) < snapDistance) {
+    obj.setPositionByOrigin(
+      new fabric.Point(objCenter.x, centerY),
+      "center",
+      "center"
+    );
+  }
+});
       
       // Center guide lines
 let verticalGuide = null;
