@@ -1464,6 +1464,78 @@ canvas.on("object:moving", function (event) {
     );
   }
 });
+      
+      // Center guide lines
+let verticalGuide = null;
+let horizontalGuide = null;
+
+canvas.on("object:moving", function (event) {
+  const obj = event.target;
+
+  const centerX = canvas.getWidth() / 2;
+  const centerY = canvas.getHeight() / 2;
+
+  const objCenter = obj.getCenterPoint();
+  const snapDistance = 10;
+
+  // Vertical center guide
+  if (Math.abs(objCenter.x - centerX) < snapDistance) {
+    if (!verticalGuide) {
+      verticalGuide = new fabric.Line(
+        [centerX, 0, centerX, canvas.getHeight()],
+        {
+          stroke: "#8b5cf6",
+          strokeWidth: 1,
+          selectable: false,
+          evented: false,
+          excludeFromExport: true
+        }
+      );
+      canvas.add(verticalGuide);
+      verticalGuide.bringToFront();
+    }
+  } else if (verticalGuide) {
+    canvas.remove(verticalGuide);
+    verticalGuide = null;
+  }
+
+  // Horizontal center guide
+  if (Math.abs(objCenter.y - centerY) < snapDistance) {
+    if (!horizontalGuide) {
+      horizontalGuide = new fabric.Line(
+        [0, centerY, canvas.getWidth(), centerY],
+        {
+          stroke: "#8b5cf6",
+          strokeWidth: 1,
+          selectable: false,
+          evented: false,
+          excludeFromExport: true
+        }
+      );
+      canvas.add(horizontalGuide);
+      horizontalGuide.bringToFront();
+    }
+  } else if (horizontalGuide) {
+    canvas.remove(horizontalGuide);
+    horizontalGuide = null;
+  }
+
+  canvas.requestRenderAll();
+});
+
+canvas.on("mouse:up", function () {
+  if (verticalGuide) {
+    canvas.remove(verticalGuide);
+    verticalGuide = null;
+  }
+
+  if (horizontalGuide) {
+    canvas.remove(horizontalGuide);
+    horizontalGuide = null;
+  }
+
+  canvas.requestRenderAll();
+});
       canvas.on("object:removed", scheduleHistory);
       canvas.on("selection:created", updateUI);
       canvas.on("selection:updated", updateUI);
