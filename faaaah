@@ -1446,9 +1446,9 @@ canvas.on("object:moving", function (event) {
 
   const objCenter = obj.getCenterPoint();
 
-  const snapDistance = 10;
+  const snapDistance = 15;
 
-  if (Math.abs(objCenter.x - centerX) < snapDistance) {
+  if (Math.abs(objCenter.x - centerX) <= snapDistance) {
     obj.setPositionByOrigin(
       new fabric.Point(centerX, objCenter.y),
       "center",
@@ -1456,13 +1456,15 @@ canvas.on("object:moving", function (event) {
     );
   }
 
-  if (Math.abs(objCenter.y - centerY) < snapDistance) {
+  if (Math.abs(objCenter.y - centerY) <= snapDistance) {
     obj.setPositionByOrigin(
       new fabric.Point(objCenter.x, centerY),
       "center",
       "center"
     );
   }
+
+  obj.setCoords();
 });
       
       // Center guide lines
