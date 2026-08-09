@@ -1437,6 +1437,25 @@ overflow: hidden;
 
       canvas.on("object:added", scheduleHistory);
       canvas.on("object:modified", scheduleHistory);
+     
+      // Simple center snap
+canvas.on("object:moving", function (event) {
+  const obj = event.target;
+  const centerX = canvas.getWidth() / 2;
+  const centerY = canvas.getHeight() / 2;
+  const center = obj.getCenterPoint();
+  const snapDistance = 10;
+
+  if (Math.abs(center.x - centerX) < snapDistance) {
+    obj.left = centerX - (obj.getScaledWidth() / 2);
+  }
+
+  if (Math.abs(center.y - centerY) < snapDistance) {
+    obj.top = centerY - (obj.getScaledHeight() / 2);
+  }
+
+  obj.setCoords();
+});
       
       canvas.on("object:removed", scheduleHistory);
       canvas.on("selection:created", updateUI);
