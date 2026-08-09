@@ -1438,6 +1438,149 @@ overflow: hidden;
       canvas.on("object:added", scheduleHistory);
       canvas.on("object:modified", scheduleHistory);
       
+      // ================================
+// SMART SNAP SYSTEM
+// ================================
+
+let snapX = null;
+let snapY = null;
+
+const SNAP_DISTANCE = 10;
+
+canvas.on("object:moving", function (event) {
+  const moving = event.target;
+  if (!moving) return;
+
+  let bestX = null;
+  let bestY = null;
+  let closestX = SNAP_DISTANCE + 1;
+  let closestY = SNAP_DISTANCE + 1;
+
+  const movingBounds = moving.getBoundingRect();
+  const movingCenter = moving.getCenterPoint();
+
+  // -------------------------------
+  // Canvas snap points
+  // -------------------------------
+
+  const canvasCenterX = canvas.getWidth() / 2;
+  const canvasCenterY = canvas.getHeight() / 2;
+
+  const canvasXPoints = [
+    canvasCenterX
+  ];
+
+  const canvasYPoints = [
+    canvasCenterY
+  ];
+
+  // -------------------------------
+  // Other objects
+  // -------------------------------
+
+  canvas.getObjects().forEach(function (obj) {
+    if (obj === moving) return;
+
+    // Ignore our own guide lines
+    if (obj.isSnapGuide) return;
+
+    const bounds = obj.getBoundingRect();
+
+    const left = bounds.left;
+    const right = bounds.left + bounds.width;
+    const centerX = bounds.left + bounds.width / 2;
+
+    const top = bounds.top;
+    const bottom = bounds.top + bounds.height;
+    const centerY = bounds.top + bounds.height / 2;
+
+    canvasXPoints.push(left, centerX, right);
+    canvasYPoints.push(top, centerY, bottom);
+  });
+
+  // -------------------------------
+  // Moving object snap points
+  // -------------------------------
+
+  const movingLeft = movingBounds.left;
+  const movingRight = movingBounds.left + movingBounds.width;
+  const movingCenterX =
+    movingBounds.left + movingBounds.width / 2;
+
+  const movingTop = movingBounds.top;
+  const movingBottom = movingBounds.top + movingBounds.height;
+  const movingCenterY =
+    movingBounds.top + movingBounds.height / 2;
+
+  const movingXPoints = [
+    movingLeft,
+    movingCenterX,
+    movingRight
+  ];
+
+  const movingYPoints = [
+    movingTop,
+    movingCenterY,
+    movingBottom
+  ];
+
+  // -------------------------------
+  // Find closest X alignment
+  // -------------------------------
+
+  movingXPoints.forEach(function (movingPoint) {
+    canvasXPoints.forEach(function (targetPoint) {
+      const distance = Math.abs(movingPoint - targetPoint);
+
+      if (distance < closestX && distance <= SNAP_DISTANCE) {
+        closestX = distance;
+        bestX = targetPoint - movingPoint;
+      }
+    });
+  });
+
+  // -------------------------------
+  // Find closest Y alignment
+  // -------------------------------
+
+  movingYPoints.forEach(function (movingPoint) {
+    canvasYPoints.forEach(function (targetPoint) {
+      const distance = Math.abs(movingPoint - targetPoint);
+
+      if (distance < closestY && distance <= SNAP_DISTANCE) {
+        closestY = distance;
+        bestY = targetPoint - movingPoint;
+      }
+    });
+  });
+
+  // -------------------------------
+  // Apply snap
+  // -------------------------------
+
+  if (bestX !== null) {
+    moving.left += bestX;
+    snapX = true;
+  } else {
+    snapX = false;
+  }
+
+  if (bestY !== null) {
+    moving.top += bestY;
+    snapY = true;
+  } else {
+    snapY = false;
+  }
+
+  moving.setCoords();
+  canvas.requestRenderAll();
+});
+
+canvas.on("mouse:up", function () {
+  snapX = null;
+  snapY = null;
+});
+      
       canvas.on("object:removed", scheduleHistory);
       canvas.on("selection:created", updateUI);
       canvas.on("selection:updated", updateUI);
