@@ -751,6 +751,16 @@ overflow: hidden;
     </div>
     <div class="sde-field">
   <button class="sde-primary-button" id="addToCartButton">
+    <div class="sde-field">
+  <label>Zoom</label>
+
+  <div style="display:flex; gap:8px; align-items:center;">
+    <button type="button" id="zoomOut">−</button>
+    <span id="zoomValue">100%</span>
+    <button type="button" id="zoomIn">+</button>
+    <button type="button" id="zoomReset">Reset</button>
+  </div>
+</div>
     Add to Cart
   </button>
 </div>
