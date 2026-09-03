@@ -1448,6 +1448,27 @@ overflow: hidden;
       canvas.on("object:added", scheduleHistory);
       canvas.on("object:modified", scheduleHistory);
      
+      // Drawing tool
+let isDrawing = false;
+let drawingMode = false;
+
+function startDrawing() {
+  drawingMode = true;
+  canvas.isDrawingMode = true;
+  canvas.freeDrawingBrush.width = 5;
+  canvas.freeDrawingBrush.color = "#111827";
+}
+
+function stopDrawing() {
+  drawingMode = false;
+  canvas.isDrawingMode = false;
+}
+
+canvas.on("path:created", function () {
+  scheduleHistory();
+  updateUI();
+});
+      
       // Simple center snap
 canvas.on("object:moving", function (event) {
   const obj = event.target;
